@@ -57,11 +57,17 @@ class TDTag extends StatelessWidget {
   /// 自定义模式下的字体粗细
   final FontWeight fontWeight;
 
-  /// 自定义模式下的字体粗细
+  /// 自定义模式下的间距
   final EdgeInsets? padding;
 
-  /// 自定义模式下的字体粗细
+  /// 自定义模式下的圆角宽度
   final double borderRadius;
+
+  /// 自定义模式下的线框粗细
+  final double border;
+
+  /// 是否显示设置行高
+  final bool showHeight;
 
   const TDTag(this.text,
       {this.type = TDTagType.NORMAL,
@@ -73,6 +79,8 @@ class TDTag extends StatelessWidget {
       this.fontWeight = FontWeight.normal,
       this.padding,
       this.borderRadius = 2,
+      this.border = 1,
+      this.showHeight = true,
       Key? key})
       : super(key: key);
 
@@ -83,10 +91,12 @@ class TDTag extends StatelessWidget {
       decoration: BoxDecoration(
           color: backgroundColor ?? _getBackgroundColor(context),
           border: Border.all(
-              width: 1, color: wireFrameColor ?? _getWireFrameColor(context)),
+              width: border,
+              color: wireFrameColor ?? _getWireFrameColor(context)),
           borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
       child: TDText(
         this.text,
+        showHeight: showHeight,
         textColor: textColor ?? _getTextColor(context),
         font: font ?? _getFont(context),
         fontWeight: fontWeight,
